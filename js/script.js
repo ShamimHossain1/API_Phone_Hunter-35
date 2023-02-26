@@ -1,6 +1,22 @@
 
 //------------------- call API ---------------------
+
+// Fetch normal way 
+
+// const loadPhones = async (searchText, dataLimit) => {
+// const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+// fetch(url)
+// .then(res => res.json())
+// .then(data => displayPhones(data.data, dataLimit))
+// catch(error)=> console.log(error)
+// }
+
+// Fetch async way 
+
 const loadPhones = async (searchText, dataLimit) => {
+
+    
+
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
     const res = await fetch(url);
     const data = await res.json();
@@ -118,6 +134,9 @@ const loadPhoneDetails = async id => {
 
 }
 
+
+// phone details modal
+
 const displayPhoneDetails = details => {
 
     const phoneName = document.getElementById('phoneDetailsLabel');
@@ -125,13 +144,14 @@ const displayPhoneDetails = details => {
    
     phoneName.innerText = details.name;
     phoneDetails.innerHTML = `
-
-    <img src="${details.image ? details.image:"No Image Found"}" class="img-fluid mb-3" style = "width:50%" alt="">
-    <p>ChipSet: ${details.mainFeatures.chipSet ? details.mainFeatures.chipSet:"No Information"}</p>
-    <p>Display Size: ${details.mainFeatures.displaySize ? details.mainFeatures.displaySize:"No Information"}</p>
-    <p>Memory: ${details.mainFeatures.memory ? details.mainFeatures.memory:"No Information"}</p>
-    <p>Storage: ${details.mainFeatures.storage ? details.mainFeatures.storage:"No Information"}</p>
-    <p>Release Date: ${details.releaseDate ? details.releaseDate:"No Information"}</p>
+   
+    <span></span>
+    <img src="${details.image ? details.image:"No Image Found"}" class="img-fluid mb-4" style = "width:50%" alt="">
+    <p><span  class="fw-semibold">ChipSet:</span> ${details.mainFeatures.chipSet ? details.mainFeatures.chipSet:"No Information"}</p>
+    <p><span  class="fw-semibold">Display Size:</span> ${details.mainFeatures.displaySize ? details.mainFeatures.displaySize:"No Information"}</p>
+    <p><span  class="fw-semibold">Memory:</span> ${details.mainFeatures.memory ? details.mainFeatures.memory:"No Information"}</p>
+    <p><span  class="fw-semibold">Storage:</span> ${details.mainFeatures.storage ? details.mainFeatures.storage:"No Information"}</p>
+    <p><span  class="fw-semibold">Release Date:</span> ${details.releaseDate ? details.releaseDate:"No Information"}</p>
       
     `
 
