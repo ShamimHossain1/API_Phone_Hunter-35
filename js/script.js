@@ -1,23 +1,28 @@
-const loadPhones = async (searchText) => {
+const loadPhones = async (searchText, dataLimit) => {
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
     const res = await fetch(url);
     const data = await res.json();
-    displayPhones(data.data);
+    displayPhones(data.data, dataLimit);
 }
 
 
 // display phone 
 
-const displayPhones = phones => {
+const displayPhones = (phones, dataLimit) => {
     const phonesContainer = document.getElementById('phone-container');
     phonesContainer.innerHTML = "";
 
-    if(phones.length >10){
-        
+    const showAll = document.getElementById('show-btn')
+    if (dataLimit && phones.length > 9) {
+
         // display 10 phones
-        phones = phones.slice(0, 10);
+        phones = phones.slice(0, 9);
 
         // show all btn 
+        showAll.classList.remove('d-none');
+    }
+    else {
+        showAll.classList.add('d-none');
     }
 
     // display no phones
@@ -50,30 +55,43 @@ const displayPhones = phones => {
     toggleSpinner(false);
 }
 
+// load from search name
+function loadLimit(dataLimit) {
+    const searchField = document.getElementById('search-field');
+    const searchText = searchField.value;
+    loadPhones(searchText, dataLimit);
+}
+
 // search btn
 
 document.getElementById('btn-search').addEventListener('click', function () {
 
     // loader show
-   toggleSpinner(true);
+    toggleSpinner(true);
+    loadLimit(10);
 
-    const searchField = document.getElementById('search-field');
-    const searchText = searchField.value;
-    loadPhones(searchText);
 });
 
 // loader
 
-const toggleSpinner = isLoading =>{
+const toggleSpinner = isLoading => {
     const loadingSpinner = document.getElementById('loader');
-    if(isLoading){
+    if (isLoading) {
         loadingSpinner.classList.remove('d-none');
-    } 
-    else{
+    }
+    else {
         loadingSpinner.classList.add('d-none');
     }
 }
 
+// not the best way to show all
+document.getElementById('showAll-btn').addEventListener('click', function () {
+
+    // loader show
+    toggleSpinner(true);
+    loadLimit();
+
+});
 
 
 
