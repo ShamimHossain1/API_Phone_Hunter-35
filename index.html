@@ -17,14 +17,15 @@
         <h1>Welcome to Phone Hunter</h1>
     </header>
 
-    <main id="container" >
+    <main id="container">
 
         <section class="text-center mt-3">
-            <h3 >Search Mobile</h3>
+            <h3>Search Mobile</h3>
             <div class="mx-5 d-flex justify-content-center">
                 <div class=" w-50 d-flex ">
-                  <input id="search-field" type="email" class="form-control me-2" id="exampleInputEmail1" placeholder="Enter phone name" aria-describedby="emailHelp">
-                  <div id="btn-search" class=" btn btn-primary ">Search</div>
+                    <input id="search-field" type="email" class="form-control me-2" id="exampleInputEmail1"
+                        placeholder="Enter phone name" aria-describedby="emailHelp">
+                    <div id="btn-search" class=" btn btn-primary ">Search</div>
                 </div>
             </div>
         </section>
@@ -33,10 +34,19 @@
 
 
             <div id="phone-container" class="row row-cols-1 row-cols-md-3 g-4 m-5 px-5">
-               
+
 
             </div>
 
+            <div id="no-phone" class="mt-4 d-none">
+                <h3 class="text-warning text-center"> No Phone Found. Search another phone.</h3>
+            </div>
+
+            <div id="loader" class="d-flex d-none justify-content-center align-items-center b">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
 
         </section>
     </main>
